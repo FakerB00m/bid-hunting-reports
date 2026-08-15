@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>杭州市交易动态 - 08-14</title>
+<title>杭州市交易动态 - 08-15</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -66,10 +66,10 @@
   
   /* ====== 总览卡片 ====== */
   .overview-card {
-    background: #fff;
+    background: #ffffff;
+    padding: 28px 28px;
     border-radius: 18px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .overview-title {
@@ -134,24 +134,26 @@
     padding: 2px;
     min-width: max-content;
   }
+  
+  /* ====== Tab 导航 ====== */
   .tab-btn {
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 100px;
-    padding: 10px 16px;
+    padding: 14px 8px;
     border: none;
-    background: transparent;
+    background: #f5f5f7;
     color: #86868b;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 12px;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     font-family: inherit;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
   }
   .tab-btn:hover {
     background: #f5f5f7;
@@ -210,62 +212,40 @@
     -webkit-overflow-scrolling: touch;
   }
   table {
-    width: max-content;
-    min-width: 100%;
+    width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-  }
-  .table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    min-width: 700px;
   }
   th {
     background: #fafafa;
     color: #86868b;
     font-weight: 500;
-    padding: 10px 12px;
+    padding: 10px 8px;
     text-align: left;
     border-bottom: 1px solid #f0f0f0;
     font-size: 12px;
     position: sticky;
     top: 0;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-all;
     line-height: 1.3;
   }
   th:first-child { width: 32px; min-width: 32px; max-width: 32px; text-align: center; padding: 10px 4px; }
   td {
-    padding: 10px 12px;
+    padding: 10px 8px;
     border-bottom: 1px solid #f5f5f5;
     vertical-align: middle;
     color: #1d1d1f;
     line-height: 1.5;
-    white-space: nowrap;
   }
   td:first-child { text-align: center; padding: 10px 4px; }
+  /* 金额列统一样式：深橙红色加粗 */
+  td.cell-price { color: #e65100; font-weight: 500; }
+  /* 中标候选人多行换行 */
+  .candidate-row { word-break: break-all; max-width: 180px; }
   tr:last-child td { border-bottom: none; }
-  
-  /* ====== 列宽控制 ====== */
-  /* 项目名称列：允许换行，给足宽度 */
-  td.cell-project, th.cell-project {
-    white-space: normal;
-    min-width: 110px;
-    max-width: 150px;
-    word-break: break-word;
-  }
-  /* 招标人列：允许适度换行 */
-  td.cell-bidder, th.cell-bidder {
-    white-space: normal;
-    min-width: 80px;
-    max-width: 120px;
-    word-break: break-word;
-  }
   tr:hover td { background: #fafafa; }
-  
-  /* ====== 金额全局样式 ====== */
-  td.cell-price {
-    color: #e65100;
-    font-weight: 500;
-  }
   
   /* ====== 标签样式 ====== */
   .district-tag {
@@ -347,8 +327,6 @@
   /* 中标候选人多行显示 */
   .candidate-row {
     line-height: 2;
-    word-break: break-all;
-    max-width: 180px;
   }
   .candidate-item {
     display: flex;
@@ -364,167 +342,6 @@
     white-space: nowrap;
   }
   
-
-  /* ====== 合并概览+导航卡片 ====== */
-  .overview-tabs-card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 16px 16px 12px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  }
-  .overview-tabs-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  .overview-label {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1d1d1f;
-  }
-  .overview-total {
-    font-size: 13px;
-    color: #86868b;
-  }
-  .overview-total strong {
-    color: #667eea;
-    font-weight: 600;
-  }
-  .tabs-row {
-    margin: 0 -4px;
-  }
-  .tabs-row .tabs-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .tabs-row .tabs-scroll::-webkit-scrollbar { display: none; }
-  .tabs-row .tabs {
-    display: flex;
-    gap: 8px;
-    padding: 2px;
-    min-width: max-content;
-  }
-  .tabs-row .tab-btn {
-    flex: 0 0 auto;
-    min-width: 90px;
-    padding: 10px 18px;
-    border: none;
-    background: #f5f5f7;
-    color: #86868b;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .tabs-row .tab-btn:hover {
-    background: #e8e8ed;
-    color: #1d1d1f;
-  }
-  .tabs-row .tab-btn.active {
-    background: #1d1d1f;
-    color: #fff;
-    font-weight: 500;
-  }
-  .tabs-row .tab-btn .tab-count {
-    font-size: 11px;
-    background: rgba(255,255,255,0.2);
-    padding: 1px 7px;
-    border-radius: 10px;
-    font-weight: 500;
-  }
-  .tabs-row .tab-btn:not(.active) .tab-count {
-    background: #e8e8ed;
-    color: #86868b;
-  }
-
-
-  /* ====== 信息栏（内嵌header） ====== */
-  .meta-bar-inline {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #f0f0f0;
-    font-size: 12px;
-    color: #86868b;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .meta-bar-inline span { white-space: nowrap; }
-
-
-  /* ====== Tab 导航（独立） ====== */
-  .tabs-container {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: #fff;
-    border-radius: 18px;
-    padding: 10px 12px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  }
-  .tabs-container .tabs-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .tabs-container .tabs-scroll::-webkit-scrollbar { display: none; }
-  .tabs-container .tabs {
-    display: flex;
-    gap: 8px;
-    padding: 2px;
-    min-width: max-content;
-  }
-  .tabs-container .tab-btn {
-    flex: 0 0 auto;
-    min-width: 90px;
-    padding: 10px 18px;
-    border: none;
-    background: #f5f5f7;
-    color: #86868b;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .tabs-container .tab-btn:hover {
-    background: #e8e8ed;
-    color: #1d1d1f;
-  }
-  .tabs-container .tab-btn.active {
-    background: #1d1d1f;
-    color: #fff;
-    font-weight: 500;
-  }
-  .tabs-container .tab-btn .tab-count {
-    font-size: 11px;
-    background: rgba(255,255,255,0.2);
-    padding: 1px 7px;
-    border-radius: 10px;
-    font-weight: 500;
-  }
-  .tabs-container .tab-btn:not(.active) .tab-count {
-    background: #e8e8ed;
-    color: #86868b;
-  }
-
   /* ====== 移动端适配 ====== */
   @media (max-width: 768px) {
     body { padding: 8px; }
@@ -545,30 +362,31 @@
     }
     
     .overview-card {
-      padding: 10px 12px;
-      margin-bottom: 8px;
+      padding: 20px 16px;
+      margin-bottom: 12px;
       border-radius: 14px;
     }
-    .overview-title { font-size: 13px; margin-bottom: 6px; }
-    .stats { gap: 4px; }
+    .overview-title { font-size: 14px; margin-bottom: 10px; }
+    .stats { gap: 8px; }
     .stat-item {
-      min-width: 40px;
-      padding: 6px 4px;
+      min-width: 70px;
+      padding: 12px 8px;
       border-radius: 10px;
     }
-    .stat-item .num { font-size: 16px; }
-    .stat-item .label { font-size: 9px; }
+    .stat-item .num { font-size: 20px; }
+    .stat-item .label { font-size: 10px; }
     
     .tabs-container {
-      padding: 8px 8px;
-      margin-bottom: 10px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
       border-radius: 14px;
     }
+    .tabs { gap: 4px; }
     .tab-btn {
-      padding: 8px 14px;
-      font-size: 12px;
-      min-width: 80px;
+      padding: 11px 6px;
+      font-size: 13px;
       border-radius: 10px;
+      min-width: 80px;
     }
     
     .section { border-radius: 14px; }
@@ -581,23 +399,30 @@
     }
     table {
       font-size: 13px;
-      min-width: max-content;
-      width: auto;
+      min-width: auto;
+      width: 100%;
     }
-    th { padding: 8px 6px; font-size: 11px; line-height: 1.2; white-space: nowrap; }
-    td { padding: 8px 4px; font-size: 12px; line-height: 1.3; white-space: nowrap; }
+    th { padding: 8px 4px; font-size: 11px; line-height: 1.2; }
+    td { padding: 8px 4px; font-size: 12px; line-height: 1.3; word-break: break-all; }
     th:first-child { width: 28px; min-width: 28px; max-width: 28px; }
+    /* 招标人列（第3列）和项目名称列（第4列）宽度约束 */
+    td:nth-child(3) { min-width: 80px; max-width: 120px; word-break: break-all; }
+    td:nth-child(4) { min-width: 110px; max-width: 150px; }
     /* 日期列、金额列、中标人列：不换行，确保一行显示 */
     td.cell-date, td.cell-price, td.cell-winner {
       white-space: nowrap;
       min-width: 80px;
     }
-    td.cell-price { min-width: 70px; color: #e65100; font-weight: 500; }
+    td.cell-price { min-width: 70px; }
     td.cell-winner { min-width: 90px; }
-    /* 链接列自然宽度，允许右滑查看 */
+    /* 链接列固定宽度，只在需要时右滑 */
     td:last-child, th:last-child {
-      min-width: 80px;
+      min-width: 70px;
       white-space: nowrap;
+      position: sticky;
+      right: 0;
+      background: #fff;
+      box-shadow: -2px 0 4px rgba(0,0,0,0.04);
     }
     
     .tag {
@@ -614,53 +439,133 @@
     
     .empty { padding: 40px 16px; font-size: 13px; }
     .footer { padding: 16px 8px 4px; font-size: 11px; }
+    
+    /* 表格横向滑动提示 */
+    .table-wrap {
+      position: relative;
+    }
+    .table-wrap.has-scroll::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 28px;
+      width: 36px;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.92));
+      pointer-events: none;
+      z-index: 2;
+    }
+    .table-wrap.has-scroll::after {
+      content: '›';
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
+      width: 22px;
+      height: 22px;
+      background: rgba(102,126,234,0.85);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 3;
+      animation: hintBounce 1.5s ease-in-out infinite;
+    }
+    .table-wrap.scrolled-end::before,
+    .table-wrap.scrolled-end::after {
+      display: none;
+    }
+    @keyframes hintBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    
+    /* 各板块列宽定制 */
+    /* 招标文件公示：公示结束时间列窄一点，一行日期 */
+    .tbl-doc-public td.cell-date {
+      width: auto;
+      min-width: 40px;
+      max-width: 52px;
+    }
+    /* 开标结果公示：投标人数列居中 */
+    .tbl-open-bid td:nth-child(5) {
+      text-align: center;
+    }
+    /* 中标候选人公示：中标候选人列宽一些（约4字一行），报价列窄一些 */
+    .tbl-candidate td:nth-child(5) {
+      width: 58px;
+      min-width: 58px;
+      max-width: 58px;
+      white-space: normal;
+      word-break: break-all;
+    }
+    .tbl-candidate td:nth-child(6) {
+      width: 42px;
+      min-width: 42px;
+      max-width: 42px;
+      white-space: nowrap;
+    }
+    /* 中标公告：中标人列宽一些 */
+    .tbl-award td.cell-winner {
+      width: 58px;
+      min-width: 58px;
+    }
   }
-
-    .overview-tabs-card {
-      padding: 12px 10px 10px;
-      margin-bottom: 10px;
-      border-radius: 14px;
-    }
-    .overview-label { font-size: 13px; }
-    .overview-total { font-size: 12px; }
-    .tabs-row .tab-btn {
-      padding: 8px 14px;
-      font-size: 12px;
-      min-width: 75px;
-      border-radius: 10px;
-    }
-
-  
-    .meta-bar-inline { gap: 8px; font-size: 11px; margin-top: 8px; padding-top: 8px; }
-
-  
-    .tabs-container { padding: 8px 8px; margin-bottom: 10px; border-radius: 14px; }
-    .tabs-container .tab-btn { padding: 8px 14px; font-size: 12px; min-width: 75px; border-radius: 10px; }
-
-  </style>
+</style>
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <h1>杭州市交易动态（08-14）</h1>
-    <div class="meta-bar-inline">
-      <span>📅 08-14 17:16</span>
-      <span>🕐 08-13 17:00 ~ 08-14 17:00</span>
-      <span>📍 杭州市 · 房屋建筑工程</span>
-    </div>
+    <h1>杭州市交易动态（08-15）</h1>
   </div>
-
-  <div class="tabs-container">
-    <div class="tabs-scroll">
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="plan_group" data-count="4" onclick="switchTab('plan_group')"><span>计划/公示</span><span class="tab-count">4</span></button>
-        <button class="tab-btn" data-tab="notice_group" data-count="2" onclick="switchTab('notice_group')"><span>招标公告</span><span class="tab-count">2</span></button>
-        <button class="tab-btn" data-tab="openbid_group" data-count="1" onclick="switchTab('openbid_group')"><span>开标情况</span><span class="tab-count">1</span></button>
-        <button class="tab-btn" data-tab="award_group" data-count="6" onclick="switchTab('award_group')"><span>中标公告</span><span class="tab-count">6</span></button>
+  
+  <div class="meta-bar">
+    <span>📅 采集时间: <strong>08-15 17:16</strong></span>
+    <span>🕐 时间范围: <strong>08-14 17:00 ~ 08-15 17:00</strong></span>
+    <span>📍 地区: <strong>杭州市</strong></span>
+    <span>🏗️ 行业: <strong>房屋建筑工程</strong></span>
+  </div>
+  
+  <div class="overview-card">
+    <div class="overview-title">📊 数据概览</div>
+    <div class="stats">
+      <div class="stat-item total">
+        <div class="num">9</div>
+        <div class="label">总计</div>
+      </div>
+            <div class="stat-item">
+        <div class="num">3</div>
+        <div class="label">招标计划</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">1</div>
+        <div class="label">招标文件公示</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">4</div>
+        <div class="label">中标候选人</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">1</div>
+        <div class="label">中标结果</div>
       </div>
     </div>
   </div>
-
+  
+  <div class="tabs-container">
+    <div class="tabs-scroll">
+      <div class="tabs">
+        <button class="tab-btn" data-tab="plan_group" data-count="4"><span>计划/公示</span><span class="tab-count">4</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="0"><span>招标公告</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="0"><span>开标情况</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="5"><span>中标公告</span><span class="tab-count">5</span></button>
+      </div>
+    </div>
+  </div>
+  
   <div id="tab-plan_group" class="tab-content">
     <div class="section">
       <div class="section-header">
@@ -668,8 +573,8 @@
       </div>
       <div class="table-wrap">
         <table class="tbl-plan">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">拱墅</span></td><td class="cell-bidder">杭州市胜蓝实验小学</td><td class="cell-project">胜蓝实验小学东新园校区室内外改造工程</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-20</td><td class="cell-price">900</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/5881ec57-8a21-4295-a442-b6236f7edda8.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">萧山</span></td><td class="cell-bidder">杭州萧山工业投资集团有限公司</td><td class="cell-project">萧山工投世纪城东区块项目（机器人示范应用中心）</td><td><span class="tag tag-design">方案设计</span></td><td class="cell-date">09-14</td><td class="cell-price">340.8</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/3dee506e-d46c-4013-822a-dab1199c5439.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #f3e5f5; color: #7b1fa2;">临安</span></td><td class="cell-bidder">杭州市临安区高虹镇崇阳村集体经济组织</td><td class="cell-project">临安区高虹镇崇阳农村综合服务中心建设项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-30</td><td class="cell-price">500</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/dcfac6dd-aa29-4144-bac8-3a8fcfae9690.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">余杭</span></td><td>浙江大学医学院附属第一医院（浙江省第一医院）</td><td>浙江大学医学院附属第一医院国家医学中心(筹)暨浙江大学医学院附属第一医院余杭院区二期建设工程</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">09-15</td><td class="cell-price">28,794.45</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/9a2d1797-99a1-4db4-ae5b-834879780dd5.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">余杭</span></td><td>浙江大学医学院附属第一医院（浙江省第一医院）</td><td>浙江大学医学院附属第一医院国家医学中心(筹)暨浙江大学医学院附属第一医院余杭院区二期建设工程</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">08-21</td><td class="cell-price">17,100.55</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/351033f7-d7da-4b47-ae62-b5980a23b433.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">滨江</span></td><td>杭州杭兴房地产开发有限公司</td><td>杭政储出（2026）45号地块商品住宅（设配套公建）项目</td><td><span class="tag tag-epc">EPC</span></td><td class="cell-date">09-14</td><td class="cell-price">60,581.4</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260814/f970da63-7301-4653-a3ca-a589445571b7.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
         </table>
       </div>
     </div>
@@ -679,21 +584,19 @@
       </div>
       <div class="table-wrap">
         <table class="tbl-doc_public">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">萧山</span></td><td class="cell-bidder">杭州金开领航产业发展运营管理有限公司</td><td class="cell-project">浙江省先进技术创新中心四期</td><td class="cell-price">32,000</td><td class="cell-date">08-19</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260814/bb14dfce-e081-40ec-9b30-81eda6ce777e.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1976d2;">淳安</span></td><td>淳安县梓桐镇人民政府;淳安县交投工程项目管理有限公司</td><td>淳安县梓桐镇西湖村杭淳开高速搬迁安置点项目</td><td class="cell-price">1,406.64</td><td class="cell-date">08-19</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260814/a86434f8-ca09-4468-ab03-7228f52f5cb4.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
         </table>
       </div>
     </div></div>
 <div id="tab-notice_group" class="tab-content">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">招标公告 · 2 条</div>
+        <div class="section-title">招标公告</div>
       </div>
-      <div class="table-wrap">
-        <table class="tbl-notice">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">桐庐</span></td><td class="cell-bidder">桐庐县文化旅游投资集团有限公司</td><td class="cell-project">武盛大唐（一期）提升改造项目</td><td class="cell-price">7,256.45</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260814/72d4df85-cc0d-4b63-914b-22e0ae07e49e.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">桐庐</span></td><td class="cell-bidder">桐庐惠民建设有限公司</td><td class="cell-project">2026年桐庐县老旧小区综合改造提升工程</td><td class="cell-price">955.36</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260814/0ecd6b6b-0963-435b-98fd-a7dc2316470e.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
-        </table>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        暂无信息
       </div>
     </div>
     <div class="section">
@@ -708,35 +611,33 @@
 <div id="tab-openbid_group" class="tab-content">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">开标结果公示 · 1 条</div>
+        <div class="section-title">开标结果公示</div>
       </div>
-      <div class="table-wrap">
-        <table class="tbl-open_bid">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">钱塘</span></td><td class="cell-bidder">杭州市钱塘区市政设施管理和河道保护中心</td><td class="cell-project">下沙区域泵站提升改造项目</td><td style="font-weight: 600; color: #0071e3; text-align: center;">961</td><td><span class="tag tag-competitor" style="background: #fff3e0; color: #e65100;">中宙</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260813/b79706ec-948e-4df8-ac5b-4bd19a43ddbc.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
-        </table>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        暂无信息
       </div>
     </div></div>
 <div id="tab-award_group" class="tab-content">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">中标候选人公示 · 3 条</div>
+        <div class="section-title">中标候选人公示 · 4 条</div>
       </div>
       <div class="table-wrap">
         <table class="tbl-candidate">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">钱塘</span></td><td class="cell-bidder">杭州市钱塘区市政设施管理和河道保护中心</td><td class="cell-project">下沙区域泵站提升改造项目</td><td class="candidate-row">四川宸源建筑工程有限责任公司<br>浙江银高建设有限公司<br>西北舜天建设有限公司<br>杭州富阳浩轩建设有限公司<br>绍兴承启建设有限公司</td><td class="candidate-row cell-price">1,466.36<br>1,468.34<br>1,466.90<br>1,465.90<br>1,469.59</td><td class="cell-date">08-17</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/3fe09030-15d9-4e3c-9e10-eb6de8c7bec3.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #fffde7; color: #f9a825;">富阳</span></td><td class="cell-bidder">杭州市富阳区环山乡中埠村集体经济组织</td><td class="cell-project">环山乡中埠村配套体育活动中心项目</td><td class="candidate-row">浙江宏拓建设有限公司</td><td class="candidate-row cell-price">487.95</td><td class="cell-date">08-17</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/f3b32a9f-903e-4d53-b1c7-fc82676d883f.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">桐庐</span></td><td class="cell-bidder">杭州海康存储科技有限公司</td><td class="cell-project">年产3000万片eMMC、车规UDP、3DNANDFlash等产品的海康存储先进封测生产线改造项目</td><td class="candidate-row">武汉华康世纪洁净科技股份有限公司</td><td class="candidate-row cell-price">2,893.77</td><td class="cell-date">08-17</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/8d011df5-5ac6-4044-a704-652c7bf5ab76.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">余杭</span></td><td>杭州余杭溪望商业发展有限公司</td><td>杭政储出【2025】135号地块开发项目（瓶窑镇C19地块商业综合体项目）</td><td>-</td><td>-</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/e6086f4a-3846-4a19-93f4-f6400783fa6b.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">萧山</span></td><td>杭州萧山义桥復兴股份经济联合社</td><td>义桥镇復兴村村级物业经营用房项目</td><td class="candidate-row">浙江欣星建设有限公司;丽水大家建设工程有限公司;旭航建设有限公司;浙江水深建设有限公司;浙江中晨建设有限公司</td><td class="cell-price">-</td><td class="cell-date">08-17</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/509fc154-2bc9-484f-891a-a3d660dc8f19.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e3f2fd; color: #1976d2;">淳安</span></td><td>淳安千岛湖旅游集团有限公司</td><td>千岛湖湖岸联动旅游产业提升及基础设施建设项目—东北湖区旅游码头及周边基础设施提升</td><td>-</td><td>-</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/e63e36b4-a609-43ba-bfa3-738cd1c9f5c1.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">上城</span></td><td>杭州市上城区浜河股份经济合作社</td><td>笕桥单元SC110206-22地块商业兼容商务金融用房项目</td><td class="candidate-row">陕西中岭建设工程有限公司;丽水天宇园林建设有限公司</td><td class="cell-price">-</td><td class="cell-date">08-17</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260814/54bf7076-a0a8-4d24-bffd-6f6bd83613b7.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
         </table>
       </div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">中标结果公告 · 3 条</div>
+        <div class="section-title">中标结果公告 · 1 条</div>
       </div>
       <div class="table-wrap">
         <table class="tbl-award">
-          <thead><tr><th>序号</th><th>区县</th><th class="cell-bidder">招标人</th><th class="cell-project">项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
-          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">萧山</span></td><td class="cell-bidder">招标代理沥荣新股份司经济联合社瓜沥镇荣新村村级物业标段（包）名称</td><td class="cell-project">瓜沥镇荣新村村级物业经营用房项目</td><td class="cell-winner" style="font-weight: 500;">大立建设集团有限公司</td><td class="cell-price" style="color: #e65100; font-weight: 500;">2,369.19</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260813/3909a41a-0b44-4bd0-b922-ff76be16cb5e.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">临平</span></td><td class="cell-bidder">杭州市临平区教育资产管理中心</td><td class="cell-project">天万学校配套宿舍项目</td><td class="cell-winner" style="font-weight: 500;">深川控股集团有限公司</td><td class="cell-price" style="color: #e65100; font-weight: 500;">5,507.69</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260814/7bc389ff-4e5b-4767-b517-edceb5e441f0.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">临平</span></td><td class="cell-bidder">杭州市临平区人民政府运河街道办事处</td><td class="cell-project">运河街道杭南多户多联集中安置点公建配套工程（二期）</td><td class="cell-winner" style="font-weight: 500;">浙江坤兴建设集团有限公司</td><td class="cell-price" style="color: #e65100; font-weight: 500;">5,851.76</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260813/c097674e-e090-4935-a686-48c319e72936.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1976d2;">淳安</span></td><td>招标代理园林发展中</td><td>2026年城市基础设施提升工程</td><td class="cell-winner" style="font-weight: 500;">浙江骏恒建设有限公司</td><td class="cell-price">1,028.1</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260814/ec978594-89a2-4c92-8f2e-9fcd34957850.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
         </table>
       </div>
     </div></div>
@@ -822,3 +723,4 @@
   });
 </script>
 </body>
+</html>
