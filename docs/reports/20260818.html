@@ -545,26 +545,14 @@
     .tbl-open-bid td:nth-child(5) {
       text-align: center;
     }
-    /* 中标候选人公示：中标候选人列宽一些（约4字一行），报价列窄一些 */
-    .tbl-candidate td:nth-child(5) {
-      width: 58px;
-      min-width: 58px;
-      max-width: 58px;
-      white-space: normal;
-      word-break: break-all;
-    }
-    .tbl-candidate td:nth-child(6) {
-      width: 42px;
-      min-width: 42px;
-      max-width: 42px;
+    /* 中标候选人公示：候选人列动态宽度由inline style控制，报价列不换行 */
+    .tbl-candidate td.cell-price {
       white-space: nowrap;
     }
-    /* 中标公告：中标人列允许换行，适当宽度 */
+    /* 中标公告：中标人列动态宽度由inline style控制 */
     .tbl-award td.cell-winner {
-      white-space: normal;
-      min-width: 80px;
-      max-width: 120px;
-      word-break: break-word;
+      white-space: nowrap;
+      word-break: keep-all;
     }
   }
 </style>
@@ -576,7 +564,7 @@
   </div>
   
   <div class="meta-bar">
-    <span>📅 采集时间: <strong>08-18 17:45</strong></span>
+    <span>📅 采集时间: <strong>08-18 17:47</strong></span>
     <span>🕐 时间范围: <strong>08-11 ~ 08-18（近7天）</strong></span>
     <span>📍 地区: <strong>杭州市</strong></span>
     <span>🏗️ 行业: <strong>房屋建筑工程</strong></span>
