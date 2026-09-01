@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浙江省房建交易动态 - 09-01</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+    padding: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  
+  /* ====== 头部 ====== */
+  .header {
+    background: #ffffff;
+    padding: 14px 20px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+    letter-spacing: -0.3px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #86868b;
+  }
+  .to-line {
+    font-size: 13px;
+    color: #1d1d1f;
+    margin-top: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+  }
+  
+  /* ====== 信息栏 ====== */
+  .meta-bar {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #86868b;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  }
+  .meta-bar span { white-space: nowrap; }
+  .meta-bar strong {
+    color: #1d1d1f;
+    font-weight: 500;
+  }
+  
+  /* ====== 总览卡片 ====== */
+  .overview-card {
+    background: #ffffff;
+    padding: 28px 28px;
+    border-radius: 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .overview-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 14px;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 90px;
+    text-align: center;
+    padding: 16px 10px;
+    background: #f5f5f7;
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+  }
+  .stat-item:hover {
+    transform: translateY(-2px);
+  }
+  .stat-item.total {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .stat-item.total .num, .stat-item.total .label { color: #fff; }
+  .stat-item .num {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+  }
+  .stat-item .label {
+    font-size: 11px;
+    color: #86868b;
+    margin-top: 4px;
+  }
+  
+  /* ====== 地区索引栏（一级Tab） ====== */
+  .region-tabs-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .region-tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .region-tabs-scroll::-webkit-scrollbar { display: none; }
+  .region-tabs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 8px;
+  }
+  .region-tab-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 8px;
+    background: #f5f5f7;
+    color: #86868b;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-direction: column;
+    gap: 1px;
+    user-select: none;
+  }
+  .region-tab-main.active {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,122,255,0.25);
+  }
+  .region-tab-main .region-count {
+    font-size: 10px;
+    background: rgba(255,255,255,0.2);
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .region-tab-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+  }
+  .region-tab-btn {
+    padding: 6px 4px;
+    background: #f5f5f7;
+    color: #86868b;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    font-family: inherit;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+  }
+  .region-tab-btn:hover {
+    background: #e8e8ed;
+    color: #1d1d1f;
+    transform: scale(1.02);
+  }
+  .region-tab-btn.active {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,122,255,0.25);
+  }
+  .region-tab-btn .region-count {
+    font-size: 10px;
+    background: #e8e8ed;
+    color: #86868b;
+    padding: 0 6px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .region-tab-btn.active .region-count {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+  }
+  
+  /* 桌面端：地区Tab同比例放大 */
+  @media (min-width: 769px) {
+    .region-tabs { gap: 10px; }
+    .region-tab-main { padding: 10px 12px; font-size: 15px; }
+    .region-tab-btn { padding: 8px 6px; font-size: 13px; }
+    .region-tab-grid { gap: 6px; }
+  }
+  
+  /* 地区面板：默认隐藏，active显示 */
+  .region-panel { display: none; }
+  .region-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  /* ====== Tab 导航 ====== */
+  .tabs-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-radius: 18px;
+    padding: 14px 16px 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .tabs-summary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 4px 10px;
+    font-size: 13px;
+    color: #86868b;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+  }
+  .summary-total {
+    font-weight: 500;
+    color: #1d1d1f;
+  }
+  .summary-total strong {
+    color: #667eea;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .summary-new {
+    font-weight: 500;
+    color: #ff3b30;
+  }
+  .summary-new strong {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs-scroll::-webkit-scrollbar { display: none; }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    padding: 2px;
+    min-width: max-content;
+  }
+  
+  /* ====== Tab 导航 ====== */
+  .tab-btn {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 14px 8px;
+    border: none;
+    background: #f5f5f7;
+    color: #86868b;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .tab-btn:hover {
+    background: #f5f5f7;
+    color: #1d1d1f;
+  }
+  .tab-btn.active {
+    background: #1d1d1f;
+    color: #fff;
+    font-weight: 500;
+  }
+  .tab-btn .tab-count {
+    font-size: 11px;
+    background: rgba(255,255,255,0.2);
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .tab-btn:not(.active) .tab-count {
+    background: #e8e8ed;
+    color: #86868b;
+  }
+  
+  /* ====== 板块内容 ====== */
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .section {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section-header {
+    padding: 20px 24px 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .section-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.3px;
+  }
+  
+  /* ====== 表格 ====== */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 700px;
+  }
+  th {
+    background: #fafafa;
+    color: #86868b;
+    font-weight: 500;
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+  th:first-child { width: 32px; min-width: 32px; max-width: 32px; text-align: center; padding: 10px 4px; }
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #f5f5f5;
+    vertical-align: middle;
+    color: #1d1d1f;
+    line-height: 1.5;
+  }
+  td:first-child { text-align: center; padding: 10px 4px; }
+  /* 招标人列：容7个字 */
+  td.cell-bidder, th.cell-bidder { white-space: normal; min-width: 119px; max-width: 119px; word-break: break-word; }
+  /* 项目名称列：容8个字 */
+  td.cell-project, th.cell-project { white-space: normal; min-width: 136px; max-width: 136px; word-break: break-word; }
+  /* 中标人列（动态宽度） */
+  td.cell-winner { white-space: nowrap; word-break: keep-all; font-weight: 500; }
+  /* 中标候选人列：按最长公司名一行显示（动态宽度由style块注入） */
+  td.cell-candidate, th.cell-candidate { word-break: keep-all; }
+  /* 金额列、日期列：不换行 */
+  td.cell-price { color: #e65100; font-weight: 500; white-space: nowrap; }
+  td.cell-date { white-space: nowrap; }
+  /* 中标候选人多行换行 */
+  .candidate-row { word-break: break-word; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  
+  /* ====== 今日新增标记样式 ====== */
+  .new-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff3b30, #ff6b6b);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+    vertical-align: middle;
+    animation: pulse-new 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-new {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  
+  /* ====== 标签样式 ====== */
+  .district-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 2px 3px 2px 0;
+    white-space: nowrap;
+    line-height: 1.6;
+  }
+  .tag-design {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+  .tag-epc {
+    background: #f3e5f5;
+    color: #7b1fa2;
+  }
+  .tag-construction {
+    background: #fff3e0;
+    color: #e65100;
+  }
+  .tag-competitor {
+    font-weight: 600;
+  }
+  .tag-none {
+    background: #f5f5f7;
+    color: #c7c7cc;
+  }
+  .link-btn {
+    display: inline-block;
+    padding: 7px 16px;
+    background: #0071e3;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 980px;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    transition: all 0.2s ease;
+    min-height: 30px;
+    line-height: 1.5;
+  }
+  .link-btn:hover {
+    background: #0077ed;
+    transform: scale(1.02);
+  }
+  
+  .empty {
+    padding: 60px 24px;
+    text-align: center;
+    color: #c7c7cc;
+    font-size: 14px;
+  }
+  .empty-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 24px 16px 8px;
+    color: #86868b;
+    font-size: 12px;
+  }
+  
+  /* 中标候选人多行显示 */
+  .candidate-row {
+    line-height: 2;
+  }
+  .candidate-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .candidate-name {
+    font-weight: 500;
+  }
+  .candidate-price {
+    color: #86868b;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  /* ====== 移动端适配 ====== */
+  @media (max-width: 768px) {
+    body { padding: 8px; }
+    .header {
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      border-radius: 14px;
+    }
+    .header h1 { font-size: 16px; }
+    .header .subtitle { font-size: 12px; }
+    
+    .meta-bar {
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      gap: 10px;
+      font-size: 12px;
+    }
+    
+    .tabs-container {
+      padding: 10px 12px 8px;
+      margin-bottom: 12px;
+      border-radius: 14px;
+    }
+    .tabs-summary {
+      font-size: 12px;
+      gap: 10px;
+      padding: 0 2px 8px;
+      margin-bottom: 8px;
+    }
+    .summary-total strong {
+      font-size: 14px;
+    }
+    .summary-new strong {
+      font-size: 14px;
+    }
+    .tabs { gap: 4px; }
+    .tab-btn {
+      padding: 11px 6px;
+      font-size: 13px;
+      border-radius: 10px;
+      min-width: 80px;
+    }
+    
+    .section { border-radius: 14px; }
+    .section-header { padding: 16px 16px 10px; }
+    .section-title { font-size: 15px; }
+    
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      font-size: 13px;
+      min-width: auto;
+      width: 100%;
+    }
+    th { padding: 8px 4px; font-size: 11px; line-height: 1.2; }
+    td { padding: 8px 4px; font-size: 12px; line-height: 1.3; word-break: break-all; }
+    th:first-child { width: 28px; min-width: 28px; max-width: 28px; }
+    /* 招标人列：容7个字 */
+    td.cell-bidder, th.cell-bidder { min-width: 119px; max-width: 119px; word-break: break-word; white-space: normal; }
+    /* 项目名称列（第4列）：容8个字 */
+    td:nth-child(4), th:nth-child(4) { min-width: 136px; max-width: 136px; word-break: break-word; }
+    /* 日期列、金额列：不换行，确保一行显示 */
+    td.cell-date, td.cell-price {
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    td.cell-price { min-width: 70px; }
+    /* 中标候选人列：按最长公司名一行显示 */
+    td.cell-candidate, th.cell-candidate { white-space: nowrap; word-break: keep-all; }
+    /* 中标人列允许换行 */
+    td.cell-winner { white-space: normal; word-break: break-word; }
+    /* 链接列 */
+    td:last-child, th:last-child {
+      min-width: 70px;
+      white-space: nowrap;
+    }
+    
+    .tag {
+      font-size: 12px;
+      padding: 2px 8px;
+      margin: 1px 2px 1px 0;
+    }
+    .district-tag { font-size: 12px; padding: 3px 10px; }
+    .link-btn {
+      padding: 7px 12px;
+      font-size: 12px;
+      min-height: 30px;
+    }
+    
+    .empty { padding: 40px 16px; font-size: 13px; }
+    .footer { padding: 16px 8px 4px; font-size: 11px; }
+    
+    /* 表格横向滑动提示 */
+    .table-wrap {
+      position: relative;
+    }
+    .table-wrap.has-scroll::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 28px;
+      width: 36px;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.92));
+      pointer-events: none;
+      z-index: 2;
+    }
+    .table-wrap.has-scroll::after {
+      content: '›';
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
+      width: 22px;
+      height: 22px;
+      background: rgba(102,126,234,0.85);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 3;
+      animation: hintBounce 1.5s ease-in-out infinite;
+    }
+    .table-wrap.scrolled-end::before,
+    .table-wrap.scrolled-end::after {
+      display: none;
+    }
+    @keyframes hintBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    
+    /* 各板块列宽定制 */
+    /* 招标文件公示：公示结束时间列窄一点，一行日期 */
+    .tbl-doc-public td.cell-date {
+      width: auto;
+      min-width: 40px;
+      max-width: 52px;
+    }
+    /* 开标结果公示：投标人数列居中 */
+    .tbl-open-bid td:nth-child(5) {
+      text-align: center;
+    }
+    /* 中标候选人公示：候选人列动态宽度由inline style控制，报价列不换行 */
+    .tbl-candidate td.cell-price {
+      white-space: nowrap;
+    }
+    /* 中标公告：中标人列动态宽度由inline style控制 */
+    .tbl-award td.cell-winner {
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>浙江省房建交易动态（09-01）</h1>
+  </div>
+  
+  <div class="meta-bar">
+    <span>📅 采集时间: <strong>09-01 18:39</strong></span>
+    <span>🕐 时间范围: <strong>09-01 ~ 09-01（近7天）</strong></span>
+  </div>
+  
+  <!-- 地区索引栏（一级切换） -->
+  <div class="region-tabs-container">
+    <div class="region-tabs-scroll">
+      <div class="region-tabs">
+        <div class="region-tab-main active" data-region="杭州" data-count="9"><span>杭州</span></div>
+    <div class="region-tab-grid">
+        <button class="region-tab-btn" data-region="宁波" data-count="7"><span>宁波</span></button><button class="region-tab-btn" data-region="温州" data-count="9"><span>温州</span></button><button class="region-tab-btn" data-region="嘉兴" data-count="12"><span>嘉兴</span></button><button class="region-tab-btn" data-region="绍兴" data-count="12"><span>绍兴</span></button><button class="region-tab-btn" data-region="金华" data-count="9"><span>金华</span></button><button class="region-tab-btn" data-region="衢州" data-count="4"><span>衢州</span></button><button class="region-tab-btn" data-region="湖州" data-count="14"><span>湖州</span></button><button class="region-tab-btn" data-region="舟山" data-count="0"><span>舟山</span></button>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="region-content">
+    <div id="region-杭州" class="region-panel" data-region="杭州"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>9</strong> 条</span><span class="summary-new">今日新增 <strong>9</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="2"><span>计划/公示</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="5"><span>招标公告</span><span class="tab-count">5</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="1"><span>开标情况</span><span class="tab-count">1</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="1"><span>中标公告</span><span class="tab-count">1</span></button></div></div></div><div id="tab-杭州-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">上城</span></td><td class="cell-bidder">杭州热联集团股份有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>凤栖江河商务中心1号楼1-2层外立面提升改造项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">10-10</td><td class="cell-price">400</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/59fbbedd-f18a-45ea-862b-5f48beb06843.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-doc_public">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #7b1fa2;">临安</span></td><td class="cell-bidder">杭州市公安局临安区分局</td><td class="cell-project"><span class="new-badge">NEW</span>临安区看守所监管设施改造二期项目</td><td class="cell-price">628.87</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/7948964d-e074-4ae9-8d1e-3713d3865e00.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-杭州-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 5 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">桐庐</span></td><td class="cell-bidder">桐庐惠民建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>2026年桐庐县老旧小区综合改造提升工程</td><td class="cell-price">294.94</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/add54d9e-220f-49e6-9078-ad3571498b45.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">桐庐</span></td><td class="cell-bidder">桐庐惠民建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>2026年桐庐县老旧小区综合改造提升工程</td><td class="cell-price">955.36</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/7d1b89d7-13c9-4089-8640-f1d362813df9.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e3f2fd; color: #1976d2;">淳安</span></td><td class="cell-bidder">浙江省淳安中学</td><td class="cell-project"><span class="new-badge">NEW</span>淳安中学整体提升工程（二期）</td><td class="cell-price">9,203.14</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/b8a625bd-91c3-44f4-9bd4-2ab227f0d3e6.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">钱塘</span></td><td class="cell-bidder">浙江警官职业学院</td><td class="cell-project"><span class="new-badge">NEW</span>浙江警官职业学院综合行政执法实训基地学生宿舍工程</td><td class="cell-price">8,226.28</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/82ebd9ae-043b-4dfa-b4f0-6d953abc6a31.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>5</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">余杭</span></td><td class="cell-bidder">杭州市余杭区黄湖镇人民政府</td><td class="cell-project"><span class="new-badge">NEW</span>黄湖镇大青山国际艺术村落片区组团建设项目（一期）</td><td class="cell-price">1,551.3</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/29430da4-23b4-4ade-8189-78f3444ff9aa.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-杭州-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff3e0; color: #ef6c00;">建德</span></td><td class="cell-bidder">建德市大慈岩镇檀村村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>建德市大慈岩镇民生服务综合体·共富联创中心项目（一期）</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">138</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/644f770e-4f9e-4bf5-9565-478d3a17c87c.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-杭州-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff3e0; color: #ef6c00;">建德</span></td><td class="cell-bidder">建德市大慈岩镇檀村村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>建德市大慈岩镇民生服务综合体·共富联创中心项目（一期）</td><td class="cell-candidate" style="min-width:220px">建德市同欣建筑工程有限公司<br>杭州港湾建设有限公司<br>浙江盛开建设有限公司<br>浙江宏兴建设有限公司<br>浙江广维垣建设有限公司</td><td class="cell-price">1,937.43<br>1,937.43<br>1,931.43<br>1,931.43<br>1,931.43</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/51081d95-d08a-483d-ba74-a745b9b56093.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div></div>
+<div id="region-宁波" class="region-panel" data-region="宁波"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>7</strong> 条</span><span class="summary-new">今日新增 <strong>7</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="2"><span>计划/公示</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="1"><span>招标公告</span><span class="tab-count">1</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="2"><span>开标情况</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="2"><span>中标公告</span><span class="tab-count">2</span></button></div></div></div><div id="tab-宁波-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">北仑</span></td><td class="cell-bidder">浙江至乐建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>北仑临港东保障性租赁住房项目</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">09-21</td><td class="cell-price">771</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/cc2203b8-649a-4edc-be7b-7ef9fbe36bb8.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">北仑</span></td><td class="cell-bidder">中合国信建设工程有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>北仑临港东保障性租赁住房项目</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">09-21</td><td class="cell-price">668</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/4eda7870-c6fa-4e41-be0f-84fc0ea7c161.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-宁波-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">奉化</span></td><td class="cell-bidder">宁波滕头现代农业发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>滕头农业孵化园基础配套工程项目</td><td class="cell-price">895.99</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/2025e94d-7cde-4e54-a26c-f329c906a6cc.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-宁波-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e8eaf6; color: #283593;">宁波高新</span></td><td class="cell-bidder">宁波星宸置业有限公司;浙江新中源建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>宁波高新区星宸置业鄞州区GX05-01-17（高新区）地块建设项目</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">17</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/4f8a3313-0a23-4b5d-a819-176e925a2aaf.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">北仑</span></td><td class="cell-bidder">宁波北仑智创云廊科技发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>中交宁波北仑科创云廊项目一期</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">4</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/be9d5357-a085-47cd-bee2-c7151cf1b561.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-宁波-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">北仑</span></td><td class="cell-bidder">宁波北仑智创云廊科技发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>中交宁波北仑科创云廊项目一期</td><td class="cell-candidate" style="min-width:220px">浙江虹海建设有限公司<br>浙江联城建筑设计有限公司<br>山东省路桥集团有限公司<br>上海中建建筑设计院有限公司<br>中铁十四局集团有限公司<br>上海尊邦建筑设计有限公司<br>中交第二公路工程局有限公司<br>武汉和创建筑工程设计有限公司</td><td class="cell-price">9,824.58<br>9,734.5<br>9,748.52<br>9,697.79</td><td class="cell-date">09-04</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/50d56e14-e824-4fc8-8640-a98af1ce1dcb.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">鄞州</span></td><td class="cell-bidder">宁波市鄞工东昕科技发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>东吴平塘专精特新产业园项目（年产100万套关键基础件项目）</td><td class="cell-winner" style="font-weight: 500; min-width:186px">浙江沧海建设有限公司</td><td class="cell-price">10,840.81</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/a40eb7c7-cb07-46c9-856b-3e4b70abdac4.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-温州" class="region-panel" data-region="温州"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>9</strong> 条</span><span class="summary-new">今日新增 <strong>9</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="5"><span>计划/公示</span><span class="tab-count">5</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="0"><span>招标公告</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="2"><span>开标情况</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="2"><span>中标公告</span><span class="tab-count">2</span></button></div></div></div><div id="tab-温州-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 5 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">瓯海</span></td><td class="cell-bidder">温州高铁新城产业发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>温州市瓯海中心区站前单元B-06a地块建设项目</td><td><span class="tag tag-design">方案设计</span></td><td class="cell-date">09-09</td><td class="cell-price">1,300</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/f3f02cdf-5a55-4ed3-b56a-eac762b3413e.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">龙湾</span></td><td class="cell-bidder">温州经济技术开发区城建发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>温州经济技术开发区金海园区保障性租赁住房工程</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-15</td><td class="cell-price">1,500</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/04620eda-2ef7-47bf-9af9-9f59d3254324.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">龙湾</span></td><td class="cell-bidder">温州经济技术开发区城建发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>温州湾金属制品业小微园D-31b地块建设项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-15</td><td class="cell-price">2,262</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/a0e59e6e-374f-4bea-8136-4bce1005aed9.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">龙湾</span></td><td class="cell-bidder">温州经济技术开发区城建发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>温州未来智能家居制造产业基地及配套基础设施建设工程（智能家居制造产业基地）</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-15</td><td class="cell-price">3,350</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/8f344a28-adf3-462d-af0f-5ac6785fb819.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>5</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">文成</span></td><td class="cell-bidder">浙江文成经济开发区管理委员会</td><td class="cell-project"><span class="new-badge">NEW</span>文成县生态产业园综合配套工程项目-文成经开区科创孵化中心建设工程</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">09-01</td><td class="cell-price">150</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/d68dbe5a-a0f2-45c5-a234-e028344488fe.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-温州-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-温州-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">龙湾</span></td><td class="cell-bidder">温州市龙湾区第一人民医院、温州市龙湾区第一人民医院互联网医院</td><td class="cell-project"><span class="new-badge">NEW</span>温州市龙湾区第一人民医院康复护理扩容提升工程</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">58</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/4f37c14d-1377-4dff-a489-fdc211ff5c58.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">永嘉</span></td><td class="cell-bidder">永嘉县溪下乡卫生院</td><td class="cell-project"><span class="new-badge">NEW</span>溪下乡卫生院拆扩建工程</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">134</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/48b0418a-7dd1-420d-958b-1406e28f3a9a.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-温州-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">永嘉</span></td><td class="cell-bidder">永嘉县溪下乡卫生院</td><td class="cell-project"><span class="new-badge">NEW</span>溪下乡卫生院拆扩建工程</td><td class="cell-candidate" style="min-width:220px">浙江通利建设工程有限公司<br>中瑞和建设集团有限公司<br>杭州顺势建设有限公司<br>浙江春江建设有限公司<br>嗣晟建工有限公司</td><td class="cell-price">542.23<br>544<br>541.24<br>541.41<br>544.96</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/437e023a-ffd5-4501-9dec-1e3c0f9842f6.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">文成</span></td><td class="cell-bidder">文成县安泰投资开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>文成县百丈漈小微企业园扩建工程</td><td class="cell-candidate" style="min-width:220px">温州豪润建设有限公司<br>浙江正立高科建设有限公司<br>温州市华都建设有限公司<br>江西中浩建设工程有限公司<br>天亿建设集团有限公司</td><td class="cell-price">1,193.14<br>1,198.25<br>1,196.1<br>1,192.87<br>1,193.82</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/1b32d10f-2841-461c-8d59-bd497eafc007.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div></div>
+<div id="region-嘉兴" class="region-panel" data-region="嘉兴"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>12</strong> 条</span><span class="summary-new">今日新增 <strong>12</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="2"><span>计划/公示</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="1"><span>招标公告</span><span class="tab-count">1</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="3"><span>开标情况</span><span class="tab-count">3</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="6"><span>中标公告</span><span class="tab-count">6</span></button></div></div></div><div id="tab-嘉兴-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fffde7; color: #f9a825;">海盐</span></td><td class="cell-bidder">海盐县房地产与住房保障管理服务中心（海盐县住房资金管理中心、海盐县房屋征收管理服务中心）</td><td class="cell-project"><span class="new-badge">NEW</span>海盐县公租房改造提升工程（金三阁）</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-08</td><td class="cell-price">3,914.82</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/0ee0a204-531c-4c04-88be-71aed059d016.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-doc_public">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">嘉兴</span></td><td class="cell-bidder">嘉兴市长裕投资有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>嘉兴市长裕投资有限公司双溪湖活力核心区更新项目</td><td class="cell-price">65,188.85</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/0f34e9c6-e8ea-4d0f-b77a-e005fd1286e6.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-嘉兴-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">嘉兴</span></td><td class="cell-bidder">-</td><td class="cell-project"><span class="new-badge">NEW</span>嘉兴姚家荡湖畔科创发展有限公司姚家荡湖畔科创片区更新项目</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/a3d785fd-bb1a-4a6d-a1c0-544300310eb6.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-嘉兴-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 3 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fffde7; color: #f9a825;">海盐</span></td><td class="cell-bidder">海盐智安港园区建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>海盐经济开发区高标准厂房五期项目工程总承包</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">16</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/5d0ee348-fbba-4ecd-a949-166da9d312bb.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">秀洲</span></td><td class="cell-bidder">嘉兴高新技术产业开发区管理委员会</td><td class="cell-project"><span class="new-badge">NEW</span>嘉兴综合保税区C区建设项目设计采购施工总承包（EPC）</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">5</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/98cf9326-fc39-4257-b2ac-2efab93bdd61.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">平湖</span></td><td class="cell-bidder">嘉兴市龙智产业发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>平湖市林埭精密智创园项目（一期）（年产8万件精密部件及智能装备研发生产项目）工程总承包</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">5</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/b0b83c95-09c1-44d5-9ba6-91854fc2ee70.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-嘉兴-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">平湖</span></td><td class="cell-bidder">嘉兴市龙智产业发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>平湖市林埭精密智创园项目（一期）（年产8万件精密部件及智能装备研发生产项目）工程总承包</td><td class="cell-candidate" style="min-width:220px">嘉兴世博建设有限公司<br>浙江远辰建设股份有限公司<br>平湖市福通建设工程有限公司</td><td class="cell-price">8,318.16<br>8,345.75<br>8,329.08</td><td class="cell-date">09-04</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/e0d081cf-d210-4d9d-9b84-997cc82751fb.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 5 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff3e0; color: #e65100;">嘉兴经济技术开发</span></td><td class="cell-bidder">嘉兴南宸建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>2026年度城南街道老旧小区综合改造工程-幸福家园2#4#车库改造</td><td class="cell-winner" style="font-weight: 500; min-width:120px">中标价</td><td class="cell-price">390.18</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/795f4ad6-abe3-4417-a687-248d7a855dde.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">桐乡</span></td><td class="cell-bidder">桐乡市凤凰湖科技城建设开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>桐乡市凤凰湖智创基地项目（工艺配套）</td><td class="cell-winner" style="font-weight: 500; min-width:120px">中标价</td><td class="cell-price">12,167.61</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/47a2cc94-8a8e-4b08-a534-78ff42d9636a.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">桐乡</span></td><td class="cell-bidder">桐乡市梧桐新农村建设投资有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>桐乡市梧桐街道百桃园区有机更新项目-数字科创园二期二标段（B地块及一期二期连廊）</td><td class="cell-winner" style="font-weight: 500; min-width:120px">中标价</td><td class="cell-price">12,630.45</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/f8356744-3231-4685-bd8b-19d3e542c2fd.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">嘉善</span></td><td class="cell-bidder">嘉善县长城房地产有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>高铁新城商住综合体项目（暂定）</td><td class="cell-winner" style="font-weight: 500; min-width:120px">中标价</td><td class="cell-price">741.87</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/96d4b4af-abcf-4b24-804b-93d5d657baba.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>5</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">海宁</span></td><td class="cell-bidder">海宁中国皮革城股份有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>2026年度市场转型升级项目工程改造一标段EPC项目</td><td class="cell-winner" style="font-weight: 500; min-width:120px">中标价</td><td class="cell-price">10,545.44</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/093b7006-d6d8-4b9d-921a-f3dcdee4d19e.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-绍兴" class="region-panel" data-region="绍兴"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>12</strong> 条</span><span class="summary-new">今日新增 <strong>12</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="2"><span>计划/公示</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="2"><span>招标公告</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="5"><span>开标情况</span><span class="tab-count">5</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="3"><span>中标公告</span><span class="tab-count">3</span></button></div></div></div><div id="tab-绍兴-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-doc_public">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">上虞</span></td><td class="cell-bidder">绍兴市上虞舜城城市建设开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>城北67-3A号地块建设项目</td><td class="cell-price">53,000</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/0bda949a-3501-4d6e-af0c-d0588c965ec3.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #2e7d32;">越城</span></td><td class="cell-bidder">绍兴市越城区公用新能源发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>“越·捷充”高质量充电基础设施-越城区JHP-01单元01D-02-01地块（骆家葑地块）工程</td><td class="cell-price">15,480.36</td><td class="cell-date">09-08</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/49b25760-8e26-4dab-8581-03aee585fd55.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-绍兴-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">上虞</span></td><td class="cell-bidder">绍兴市上虞舜慧教育发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>上虞区状元里青少年拓展营地一期</td><td class="cell-price">3,200</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/8d7d2758-2b2e-46e9-8a70-1b3cb67bd90d.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">诸暨</span></td><td class="cell-bidder">诸暨市五泄镇十四都村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>五泄镇十四都村农贸市场</td><td class="cell-price">750</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/e62d7d06-8698-4552-beea-82942107633f.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-绍兴-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 5 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e8f5e9; color: #2e7d32;">越城</span></td><td class="cell-bidder">绍兴滨海新区飞悦城市建设开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>袍江活力城综合利用项目二期工程设计施工总承包项目</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">17</td><td><span class="tag tag-competitor" style="background: #fce4ec; color: #c62828;">三局</span> <span class="tag tag-competitor" style="background: #fce4ec; color: #c62828;">一局</span> <span class="tag tag-competitor" style="background: #d1fae5; color: #065f46;">省建工</span> <span class="tag tag-competitor" style="background: #e8f5e9; color: #2e7d32;">省一建</span> <span class="tag tag-competitor" style="background: #e8f5e9; color: #2e7d32;">省三建</span> <span class="tag tag-competitor" style="background: #ffe4e6; color: #9f1239;">精工</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/8a46dcfc-87f4-49cf-9538-0480acf9ff13.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #2e7d32;">越城</span></td><td class="cell-bidder">绍兴滨发绿色建材科技有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>绍兴滨发绿色建材科技有限公司绿色再生高端建材智造产业建设项目（二区块）</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">35</td><td><span class="tag tag-competitor" style="background: #ffe4e6; color: #9f1239;">精工</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/18ec0b76-4ffd-4d6c-896f-5543af8870dc.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">柯桥</span></td><td class="cell-bidder">绍兴市柯桥区钱清街道江南集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>江南村文化礼堂及家宴中心建设项目</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">0</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/3a4d12cc-31f3-4b34-90aa-4ec75a3e4bf5.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">新昌</span></td><td class="cell-bidder">新昌县农水发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>新昌县田管家现代农业科技综合试验基地</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">184</td><td><span class="tag tag-competitor" style="background: #fce7f3; color: #9d174d;">华汇</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/ac9fe520-918a-434a-86d1-4951f6f312e0.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>5</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">上虞</span></td><td class="cell-bidder">绍兴市上虞区交通投资有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>上虞智慧货运综合枢纽及配套基础设施项目-城西枢纽</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">168</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/f102a614-d56a-4ea5-ac03-5f63a6d218af.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-绍兴-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">上虞</span></td><td class="cell-bidder">绍兴市上虞区交通投资有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>上虞智慧货运综合枢纽及配套基础设施项目-城西枢纽</td><td class="cell-candidate" style="min-width:186px">浙江馨湘建设有限公司<br>浙江中民建设有限公司<br>浙江上风建设有限公司<br>浙江舜隆建设有限公司<br>浙江中渠建设有限公司</td><td class="cell-price">2,790.55<br>2,790.87<br>2,789.99<br>2,787.74<br>2,787.33</td><td class="cell-date">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/aad1b6a1-cefc-44bd-bd2f-b2b40539ae72.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">上虞</span></td><td class="cell-bidder">绍兴市上虞教育体育集团有限公司招标代理机构：浙江天平项目咨询有限公司工程名称：保利·都会云上府配套幼儿园提升工程工程地点：绍兴市上虞区成交单位：绍兴金丰环境建设有限公司项目负责人：王银燕中标价：5364337元</td><td class="cell-project"><span class="new-badge">NEW</span>保利•都会云上府配套幼儿园提升工程</td><td class="cell-winner" style="font-weight: 500;">-</td><td class="cell-price">536.43</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/5da299fa-e336-48d3-a8aa-81419a8adcfe.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #2e7d32;">越城</span></td><td class="cell-bidder">兴业银行股份有限公司绍兴分行项目类别</td><td class="cell-project"><span class="new-badge">NEW</span>兴业银行绍兴分行本部大楼改造提升工程</td><td class="cell-winner" style="font-weight: 500;">-</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/2e22cb39-aa02-4309-b333-408e2553cafe.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-金华" class="region-panel" data-region="金华"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>9</strong> 条</span><span class="summary-new">今日新增 <strong>9</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="4"><span>计划/公示</span><span class="tab-count">4</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="1"><span>招标公告</span><span class="tab-count">1</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="1"><span>开标情况</span><span class="tab-count">1</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="3"><span>中标公告</span><span class="tab-count">3</span></button></div></div></div><div id="tab-金华-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 3 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">义乌</span></td><td class="cell-bidder">义乌工商职业技术学院</td><td class="cell-project"><span class="new-badge">NEW</span>义乌工商职业技术学院双江湖校区建设工程（一期）</td><td><span class="tag tag-design">初步设计</span></td><td class="cell-date">09-17</td><td class="cell-price">25,188</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/7fb1b9af-93bc-447a-8ba8-d28a7fb1f356.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">永康</span></td><td class="cell-bidder">永康市象珠镇雅郎村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>永康市象珠镇雅郎村集体经济组织标准厂房建设项目</td><td><span class="tag tag-epc">EPC</span></td><td class="cell-date">09-02</td><td class="cell-price">897.63</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/655bd67d-0de0-454c-9ff4-37239ad5e7cf.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">兰溪</span></td><td class="cell-bidder">兰溪市兰锦开发建设有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>兰溪市梅江镇农产品加工产业园建设项目</td><td><span class="tag tag-design">施工图设计</span></td><td class="cell-date">09-10</td><td class="cell-price">210.2</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/b9638b40-03e9-4d0b-ab70-d8fa0d537c3e.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-doc_public">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">金东</span></td><td class="cell-bidder">金华市自来水有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>广润翰城二次供水设施提标改造工程</td><td class="cell-price">491.7</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/1fe75015-927d-43cc-9eac-ddc906ce7be4.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-金华-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e0f2f1; color: #00695c;">金华经济技术开发</span></td><td class="cell-bidder">金华市丹溪小学</td><td class="cell-project"><span class="new-badge">NEW</span>丹溪小学扩建工程</td><td class="cell-price">16,523.15</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/b0506534-ba1a-496f-a987-34e004b73328.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-金华-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1976d2;">磐安</span></td><td class="cell-bidder">磐安县新渥街上加村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>磐安县新渥街道上加村中药材文化体验中心项目</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">48</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/857aa7f6-ec92-4d27-930e-7c392b9265b2.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-金华-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e8f5e9; color: #388e3c;">武义</span></td><td class="cell-bidder">武义县熟溪街道南湖村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>武义县熟溪街道南湖村股份经济合作社农民公寓式建房项目</td><td class="cell-candidate" style="min-width:220px">金华市三日建设有限公司<br>浙江武义县星野建设有限公司<br>浙江天承建设有限公司<br>浙江国润建设集团有限公司<br>武义晟睿建设有限公司</td><td class="cell-price">8,544.51<br>8,530.86<br>8,532.81<br>8,530.86<br>8,540.61</td><td class="cell-date">09-05</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/de3f6922-f95f-4c04-9a72-1540c0d68860.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">东阳</span></td><td class="cell-bidder">-</td><td class="cell-project"><span class="new-badge">NEW</span>机动车驾驶人考试服务中心建设项目（一期）</td><td class="cell-winner" style="font-weight: 500;">-</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/86d30a83-8730-474b-a719-b486a52bd5ac.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">义乌</span></td><td class="cell-bidder">义乌市义南智能制造有限公司标段</td><td class="cell-project"><span class="new-badge">NEW</span>智能网联无人驾驶创新示范应用基地项目</td><td class="cell-winner" style="font-weight: 500;">-</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/f621f6f5-5bad-4b94-9e4b-1762a2f65768.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-衢州" class="region-panel" data-region="衢州"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>4</strong> 条</span><span class="summary-new">今日新增 <strong>4</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="3"><span>计划/公示</span><span class="tab-count">3</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="0"><span>招标公告</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="0"><span>开标情况</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="1"><span>中标公告</span><span class="tab-count">1</span></button></div></div></div><div id="tab-衢州-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">龙游</span></td><td class="cell-bidder">龙游县湖镇镇新建村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>湖镇镇新建村聚富邻里坊项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-07</td><td class="cell-price">560</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/0bd466bf-c7a7-4fc8-9e72-7b6aad6faf44.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-doc_public">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>本次招标建安<br>工程造价(万元)</th><th>公示结束时间</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #fff8e1; color: #f57f17;">龙游</span></td><td class="cell-bidder">龙游县湖镇镇新建村集体经济组织</td><td class="cell-project"><span class="new-badge">NEW</span>湖镇镇新建村聚富邻里坊项目</td><td class="cell-price">553.42</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/b9d938e2-72c0-41b7-9987-78d145d47018.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">衢州</span></td><td class="cell-bidder">衢州通盛投资开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>龙海路28号洁净车间建设项目</td><td class="cell-price">-</td><td class="cell-date">09-07</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001011/20260901/0dea958a-fab4-43d7-b573-b50472c393d4.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-衢州-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-衢州-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-衢州-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 1 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">江山</span></td><td class="cell-bidder">江山经济开发区发展投资有限公司项目类别</td><td class="cell-project"><span class="new-badge">NEW</span>江山经济开发区智慧交通停车场（莲华山工业园）建设项目</td><td class="cell-winner" style="font-weight: 500;">-</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/0acebed0-64d7-4295-88a4-189f524e8322.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-湖州" class="region-panel" data-region="湖州"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>14</strong> 条</span><span class="summary-new">今日新增 <strong>14</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="2"><span>计划/公示</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="6"><span>招标公告</span><span class="tab-count">6</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="2"><span>开标情况</span><span class="tab-count">2</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="4"><span>中标公告</span><span class="tab-count">4</span></button></div></div></div><div id="tab-湖州-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-plan">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>招标内容</th><th>计划招标时间</th><th>预估合同金额<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">南浔</span></td><td class="cell-bidder">浙江南浔新城高科建设开发有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>南浔开发区农业产业现代化提升共富二期项目——南浔现代农业综合服务中心项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">10-15</td><td class="cell-price">11,600</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/d43fef8c-ecbb-4bee-b939-c324314d6254.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e8f5e9; color: #2e7d32;">吴兴</span></td><td class="cell-bidder">湖州安悦瑞馨康养产业发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>湖州吴兴康养中心提升改造工程项目</td><td><span class="tag tag-construction">施工</span></td><td class="cell-date">09-24</td><td class="cell-price">4,500</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001013/20260901/1fbdaf11-0e51-4b1a-9a9a-aa82383823ec.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-湖州-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告 · 6 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-notice">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>建安造价<br>(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">安吉</span></td><td class="cell-bidder">安吉绿净环境科技发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>安吉县生态资源循环利用基地建筑材料循环利用中心项目二期</td><td class="cell-price">15,000</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/9048f985-bf08-49ca-9b52-9f1bc17afdeb.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">湖州</span></td><td class="cell-bidder">浙江省湖州市中级人民法院</td><td class="cell-project"><span class="new-badge">NEW</span>湖州市中级人民法院审判功能区（大要案中心）及配套设施改造提升项目</td><td class="cell-price">2,241.75</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/f1d046d2-8695-4da8-a743-6a8dffbbf006.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>3</td><td><span class="district-tag" style="background: #fbe9e7; color: #bf360c;">湖州南太湖新</span></td><td class="cell-bidder">湖州南太湖新区城市建设发展中心(湖州南太湖新区房屋征收补偿管理中心)</td><td class="cell-project"><span class="new-badge">NEW</span>新能源降碳产业园基础设施配套工程</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/efb80b44-086c-440a-b553-54a71d85720f.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>4</td><td><span class="district-tag" style="background: #fbe9e7; color: #bf360c;">湖州南太湖新</span></td><td class="cell-bidder">湖州南太湖新区城市建设发展中心(湖州南太湖新区房屋征收补偿管理中心)</td><td class="cell-project"><span class="new-badge">NEW</span>新能源降碳产业园基础设施配套工程</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/2f8bf2c6-a27a-447e-a56a-0bd946bd4d27.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>5</td><td><span class="district-tag" style="background: #e0f7fa; color: #00838f;">安吉</span></td><td class="cell-bidder">安吉县孝源学校</td><td class="cell-project"><span class="new-badge">NEW</span>安吉县孝源小学改扩建工程（一期）</td><td class="cell-price">443.69</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/865eb8fd-5a63-4063-8d5f-f4bdd9035857.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>6</td><td><span class="district-tag" style="background: #f5f5f7; color: #86868b;">湖州</span></td><td class="cell-bidder">-</td><td class="cell-project"><span class="new-badge">NEW</span>测-试-保函（请勿报名）</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001001/20260901/d7d89b87-001f-4a74-b472-12e79af7c48d.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-湖州-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-open_bid">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>投标人数</th><th>主要对手</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #f3e5f5; color: #6a1b9a;">德清</span></td><td class="cell-bidder">德清县轨道交通集团有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>杭州至德清市域铁路工程</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">0</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/41cebfc9-7f41-42e0-9b7b-5693b4c3f2c8.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">长兴</span></td><td class="cell-bidder">国网浙江省电力有限公司长兴县供电公司</td><td class="cell-project"><span class="new-badge">NEW</span>国网浙江湖州长兴县供电公司生产检修用房项目</td><td style="font-weight: 600; color: #0071e3; text-align: center; min-width: 50px; white-space: nowrap;">4</td><td><span class="tag tag-none">无</span></td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001003/20260901/950a05a0-9b46-443a-9b05-d7deecd161c0.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div>
+<div id="tab-湖州-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-candidate">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标候选人</th><th>报价(万元)</th><th>公示截止</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">南浔</span></td><td class="cell-bidder">湖州南浔新恒园区运营管理有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>光电湾产业园一期提升改造项目</td><td class="cell-candidate" style="min-width:220px">浙江升浙建设集团有限公司<br>铭扬工程设计集团有限公司<br>浙江佳成和合建设有限公司<br>湖州市规划设计研究院</td><td class="cell-price">1,547.53<br>1,545.03</td><td class="cell-date">09-04</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/2ead3675-a41f-4490-be5c-5f6733cc2d74.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">长兴</span></td><td class="cell-bidder">国网浙江省电力有限公司长兴县供电公司</td><td class="cell-project"><span class="new-badge">NEW</span>国网浙江湖州长兴县供电公司生产检修用房项目</td><td class="cell-candidate" style="min-width:220px">浙江长兴建恒建设有限公司<br>浙江长兴宫匠建设有限公司<br>浙江伟固建设有限公司<br>浙江长昊建设有限公司</td><td class="cell-price">3,168.08<br>3,228.56<br>3,272.38<br>3,343.88</td><td class="cell-date">09-04</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001004/20260901/85957fde-f840-4bc9-b110-1f63d0bb89bc.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告 · 2 条</div>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl-award">
+          <thead><tr><th>序号</th><th>区县</th><th>招标人</th><th>项目名称</th><th>中标人</th><th>中标价(万元)</th><th>链接</th></tr></thead>
+          <tbody><tr><td>1</td><td><span class="district-tag" style="background: #ffebee; color: #c62828;">长兴</span></td><td class="cell-bidder">湖州产纳科技发展有限公司</td><td class="cell-project"><span class="new-badge">NEW</span>AMHS整体自动化解决方案产业化项目</td><td class="cell-winner" style="font-weight: 500; min-width:220px">-</td><td class="cell-price">5,656.03</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/b30d69ef-40c5-4cf7-8b99-7261e7640568.html" target="_blank" class="link-btn">查看详情</a></td></tr><tr><td>2</td><td><span class="district-tag" style="background: #e3f2fd; color: #1565c0;">南浔</span></td><td class="cell-bidder">-</td><td class="cell-project"><span class="new-badge">NEW</span>南浔长三角郊野硅谷项目-智慧农业基地烘干中心</td><td class="cell-winner" style="font-weight: 500; min-width:220px">华煜建设集团有限公司/湖州南浔城投城市建设集团有限公司</td><td class="cell-price">-</td><td><a href="https://ggzy.zj.gov.cn/jyxxgk/002001/002001005/20260901/5484b4bf-a72f-41d5-bcb0-bc47073ca2f5.html" target="_blank" class="link-btn">查看详情</a></td></tr></tbody>
+        </table>
+      </div>
+    </div></div></div>
+<div id="region-舟山" class="region-panel" data-region="舟山"><div class="tabs-container"><div class="tabs-summary"><span class="summary-total">近7天动态合计 <strong>0</strong> 条</span><span class="summary-new">今日新增 <strong>0</strong> 条</span></div><div class="tabs-scroll"><div class="tabs"><button class="tab-btn" data-tab="plan_group" data-count="0"><span>计划/公示</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="notice_group" data-count="0"><span>招标公告</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="openbid_group" data-count="0"><span>开标情况</span><span class="tab-count">0</span></button>
+      <button class="tab-btn" data-tab="award_group" data-count="0"><span>中标公告</span><span class="tab-count">0</span></button></div></div></div><div id="tab-舟山-plan_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标计划</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标文件公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-舟山-notice_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">招标公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">资格预审公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-舟山-openbid_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">开标结果公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div>
+<div id="tab-舟山-award_group" class="tab-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标候选人公示</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">中标结果公告</div>
+      </div>
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        筛选后暂无交易动态
+      </div>
+    </div></div></div>
+  </div>
+  
+  <div class="footer">
+    数据来源：浙江省公共资源交易服务平台
+  </div>
+</div>
+
+<script>
+  // ===== 地区 + 板块 双层Tab切换逻辑 =====
+  document.addEventListener('DOMContentLoaded', function() {
+    const regionBtns = document.querySelectorAll('.region-tab-btn, .region-tab-main');
+    
+    function switchRegion(targetRegion) {
+      regionBtns.forEach(function(btn) {
+        if (btn.dataset.region === targetRegion) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      document.querySelectorAll('.region-panel').forEach(function(panel) {
+        if (panel.id === 'region-' + targetRegion) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+      // 切换地区后，激活该地区第一个有数据的板块Tab
+      var activePanel = document.getElementById('region-' + targetRegion);
+      if (activePanel) {
+        var firstBtn = null;
+        activePanel.querySelectorAll('.tab-btn').forEach(function(btn) {
+          if (!firstBtn && parseInt(btn.dataset.count || '0') > 0) {
+            firstBtn = btn;
+          }
+        });
+        if (!firstBtn) {
+          firstBtn = activePanel.querySelector('.tab-btn');
+        }
+        if (firstBtn) {
+          switchCatTab(targetRegion, firstBtn.dataset.tab);
+        }
+      }
+      // 重新检测表格横向滚动
+      checkAllTableScroll();
+    }
+    
+    function switchCatTab(regionKey, targetKey) {
+      var panel = document.getElementById('region-' + regionKey);
+      if (!panel) return;
+      panel.querySelectorAll('.tab-btn').forEach(function(btn) {
+        if (btn.dataset.tab === targetKey) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      panel.querySelectorAll('.tab-content').forEach(function(content) {
+        if (content.id === 'tab-' + regionKey + '-' + targetKey) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+      checkAllTableScroll();
+    }
+    
+    // 地区Tab点击
+    regionBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var targetRegion = this.dataset.region;
+        switchRegion(targetRegion);
+        document.querySelector('.region-tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    
+    // 板块Tab点击（按地区隔离）
+    document.querySelectorAll('.region-panel').forEach(function(panel) {
+      var regionKey = panel.dataset.region;
+      panel.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetKey = this.dataset.tab;
+          switchCatTab(regionKey, targetKey);
+        });
+      });
+    });
+    
+    // 默认激活第一个有数据的地区
+    var firstActiveRegion = null;
+    regionBtns.forEach(function(btn) {
+      var count = parseInt(btn.dataset.count || '0');
+      if (count > 0 && !firstActiveRegion) {
+        firstActiveRegion = btn.dataset.region;
+      }
+    });
+    if (!firstActiveRegion && regionBtns.length > 0) {
+      firstActiveRegion = regionBtns[0].dataset.region;
+    }
+    if (firstActiveRegion) {
+      switchRegion(firstActiveRegion);
+    }
+    
+    // ===== 表格横向滑动提示 =====
+    function checkAllTableScroll() {
+      document.querySelectorAll('.region-panel.active .table-wrap').forEach(function(wrap) {
+        var table = wrap.querySelector('table');
+        if (table && table.scrollWidth > wrap.clientWidth + 2) {
+          wrap.classList.add('has-scroll');
+        } else {
+          wrap.classList.remove('has-scroll');
+        }
+        if (wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 2) {
+          wrap.classList.add('scrolled-end');
+        } else {
+          wrap.classList.remove('scrolled-end');
+        }
+      });
+    }
+    
+    document.querySelectorAll('.table-wrap').forEach(function(wrap) {
+      wrap.addEventListener('scroll', checkAllTableScroll);
+    });
+    window.addEventListener('resize', checkAllTableScroll);
+    
+    // 监听地区切换
+    var regionObserver = new MutationObserver(checkAllTableScroll);
+    document.querySelectorAll('.region-panel').forEach(function(rp) {
+      regionObserver.observe(rp, { attributes: true, attributeFilter: ['class'] });
+    });
+    
+    setTimeout(checkAllTableScroll, 300);
+  });
+</script>
+</body>
+</html>
